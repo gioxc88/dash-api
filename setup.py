@@ -12,7 +12,7 @@ setuptools.setup(
     description="A wrapper around dash to extend the api defining the layout",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/gioxc88/dash-api",
+    url="https://github.com/gioxc88/dash-wrapper",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
