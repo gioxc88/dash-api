@@ -1,11 +1,11 @@
 /dist/
-/dash_api.egg-info/
+/dash_wrapper.egg-info/
 /tests/
 /utils/
 install.bat
 install-upload.bat
 upload.bat
 /.idea/
-/dash_api/__pycache__/
+/dash_wrapper/__pycache__/
 
 
