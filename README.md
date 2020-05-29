@@ -31,7 +31,7 @@ There are 5 simple rules to define the layout :
 2. **add an element on the same level with `@`**
 3. **add an element on the previous level with `/`**
 4. **add an element on the nth previous level with `/n/`**
-5. **add an element on specific levev with `%n%`**
+5. **add an element on specific level with `%n%`**
 
 **Example 1: add an element on the lower level with `*` AKA add a children**
 
@@ -42,8 +42,8 @@ Div(Div(id='level1-child1'), id='level0-parent')
 new API:
 ```
 (
-Div(id='level0-parent') *                    # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
-    Div(id='level1-child1')                  # level 1 
+Div(id='level0-parent') *     # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
+    Div(id='level1-child1')   # level 1 
 )
 ```
 
@@ -59,9 +59,9 @@ new API:
 
 ```
 (
-Div(id='level0-parent') *                    # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
-    Div(id='level1-child1') @                # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
-    Div(id='level1-child2')                  # level 1
+Div(id='level0-parent') *       # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
+    Div(id='level1-child1') @   # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
+    Div(id='level1-child2')     # level 1
 )
 ```
 
@@ -81,11 +81,11 @@ new API:
 
 ```
 (
-Div(id='level0-parent') *                    # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
-    Div(id='level1-child1') @                # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
-    Div(id='level1-child2') *                # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
-        Div(id='level2-child1') /            # level 2 (with / we specify to add the next element to level 1 because we go back 1 level)
-    Div(id='level1-child2')                  # level 1
+Div(id='level0-parent') *           # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
+    Div(id='level1-child1') @       # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
+    Div(id='level1-child2') *       # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
+        Div(id='level2-child1') /   # level 2 (with / we specify to add the next element to level 1 because we go back 1 level)
+    Div(id='level1-child2')         # level 1
 )
 ```
 
@@ -108,12 +108,12 @@ new API:
 
 ```
 (
-Div(id='level0-parent') *                    # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
-    Div(id='level1-child1') @                # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
-    Div(id='level1-child2') *                # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
-        Div(id='level2-child1') *            # level 2 (with * we specify to add the next element to level 3, i.e. to the children of level 2)
-            Div(id='level3-child1') /2/      # level 3 (with /2/ we specify to add the next element to level 1 because we go back 2 levels)
-    Div(id='level1-child3')                  # level 1
+Div(id='level0-parent') *                 # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
+    Div(id='level1-child1') @             # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
+    Div(id='level1-child2') *             # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
+        Div(id='level2-child1') *         # level 2 (with * we specify to add the next element to level 3, i.e. to the children of level 2)
+            Div(id='level3-child1') /2/   # level 3 (with /2/ we specify to add the next element to level 1 because we go back 2 levels)
+    Div(id='level1-child3')               # level 1
 )
 ```
 
@@ -124,12 +124,12 @@ new API:
 
 ```
 (
-Div(id='level0-parent') *                    # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
-    Div(id='level1-child1') @                # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
-    Div(id='level1-child2') *                # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
-        Div(id='level2-child1') *            # level 2 (with * we specify to add the next element to level 3, i.e. to the children of level 2)
-            Div(id='SubSubChild1') %1%       # level 3 (with %1% I specify to add the next element to level 1)
-    Div(id='level1-child3')                  # level 1
+Div(id='level0-parent') *                # level 0 (with * we specify to add the next element to level 1, i.e. to the children of level 0)
+    Div(id='level1-child1') @            # level 1 (with @ we specify to add the next element to level 1, i.e. same level)
+    Div(id='level1-child2') *            # level 1 (with * we specify to add the next element to level 2, i.e. to the children of level 1)
+        Div(id='level2-child1') *        # level 2 (with * we specify to add the next element to level 3, i.e. to the children of level 2)
+            Div(id='SubSubChild1') %1%   # level 3 (with %1% I specify to add the next element to level 1)
+    Div(id='level1-child3')              # level 1
 )
 ```
 
