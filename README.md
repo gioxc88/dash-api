@@ -15,10 +15,10 @@ element2 = dcc.Input()
 you would simply do:
 
 ```
-from dash_api import wrapper as dw
+import dash_api as dapi
 
-element1 = dw.Div()
-element2 = dw.Input()
+element1 = dapi.Div()
+element2 = dapi.Input()
 ```
 
 And you are good to go. Your elements now have additional functionality that I will explain below.
