@@ -15,10 +15,11 @@ element2 = dcc.Input()
 you would simply do:
 
 ```
-import dash_wrapper as dw
+from dash_wrapper import dash_core_components as dcc
+from dash_wrapper import dash_html_components as html
 
-element1 = dw.Div()
-element2 = dw.Input()
+element1 = html.Div()
+element2 = dcc.Input()
 ```
 
 And you are good to go. Your elements now have additional functionality that I will explain below.

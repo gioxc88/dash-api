@@ -1,18 +1,13 @@
 import sys
 from collections.abc import MutableSequence
 
-from . import _imports
-
 this_module = sys.modules[__name__]
 
 
-def __dir__():
-    return dir(_imports)
-
-
-def __getattr__(name):
-    # print(name)
-    Component = getattr(_imports, name)
+def base_wrapper(name, module):
+    if name == '__path__':
+        return
+    Component = getattr(module, name)
 
     class ModComponent(Component):
 
@@ -92,7 +87,3 @@ def __getattr__(name):
                     parent.children = [parent.children, children]
 
     return ModComponent
-
-
-__all__ = [name for name in dir(_imports) if ((not name.startswith('_')) and
-                                              (name not in ['METADATA_PATH', 'os', 'sys', 'themes']))]
