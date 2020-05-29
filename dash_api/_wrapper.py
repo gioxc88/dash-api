@@ -1,13 +1,18 @@
 import sys
-from collections import MutableSequence
+from collections.abc import MutableSequence
 
-import dash_import
+from . import _imports
 
 this_module = sys.modules[__name__]
 
 
+def __dir__():
+    return dir(_imports)
+
+
 def __getattr__(name):
-    Component = getattr(dash_import, name)
+    # print(name)
+    Component = getattr(_imports, name)
 
     class ModComponent(Component):
 
@@ -26,7 +31,7 @@ def __getattr__(name):
             self._levels.setdefault(self._level, self._last)
             self._last = other
             self._count += 1
-            print(other, self._count)
+            # print(other, self._count)
 
             return self
 
@@ -35,7 +40,7 @@ def __getattr__(name):
             self._add_children(parent=parent, children=other)
             self._last = other
             self._count += 1
-            print(other, self._count)
+            # print(other, self._count)
 
             return self
 
@@ -51,7 +56,7 @@ def __getattr__(name):
             self._level -= self._indent
             self._count += 1
             self._indent = 1
-            print(other, self._count)
+            # print(other, self._count)
 
             return self
 
@@ -67,7 +72,7 @@ def __getattr__(name):
             self._level = self._indent - 1
             self._count += 1
             self._indent = 1
-            print(other, self._count)
+            # print(other, self._count)
 
             return self
 
@@ -88,3 +93,6 @@ def __getattr__(name):
 
     return ModComponent
 
+
+__all__ = [name for name in dir(_imports) if ((not name.startswith('_')) and
+                                              (name not in ['METADATA_PATH', 'os', 'sys', 'themes']))]

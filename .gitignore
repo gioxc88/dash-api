@@ -1,2 +1,7 @@
 /dist/
 /dash_api.egg-info/
+/tests/
+/.idea/
+/dash_api/__pycache__/
+instructions.txt
+
