@@ -1,7 +1,6 @@
 /build/
 /dist/
 /dash_wrapper.egg-info/
-/tests/
 /utils/
 install.bat
 install-upload.bat
