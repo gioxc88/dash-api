@@ -1,7 +1,11 @@
 /dist/
 /dash_api.egg-info/
 /tests/
+/utils/
+install.bat
+install-upload.bat
+upload.bat
 /.idea/
 /dash_api/__pycache__/
-instructions.txt
+
 

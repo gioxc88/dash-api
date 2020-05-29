@@ -1,0 +1,98 @@
+import sys
+from collections.abc import MutableSequence
+
+from . import _imports
+
+this_module = sys.modules[__name__]
+
+
+def __dir__():
+    return dir(_imports)
+
+
+def __getattr__(name):
+    # print(name)
+    Component = getattr(_imports, name)
+
+    class ModComponent(Component):
+
+        def __init__(self, *args, **kwargs):
+            self._indent = 1
+            self._count = 0
+            self._last = self
+            self._level = -1
+            self._levels = {}
+
+            super().__init__(*args, **kwargs)
+
+        def __mul__(self, other):
+            self._add_children(parent=self._last, children=other)
+            self._level += 1
+            self._levels.setdefault(self._level, self._last)
+            self._last = other
+            self._count += 1
+            # print(other, self._count)
+
+            return self
+
+        def __matmul__(self, other):
+            parent = self._levels.get(self._level)
+            self._add_children(parent=parent, children=other)
+            self._last = other
+            self._count += 1
+            # print(other, self._count)
+
+            return self
+
+        def __truediv__(self, other):
+            if isinstance(other, int):
+                self._indent = other
+                return self
+
+            parent = self._levels.get(self._level - self._indent)
+            self._add_children(parent=parent, children=other)
+            self._last = other
+            self._levels.pop(self._level)
+            self._level -= self._indent
+            self._count += 1
+            self._indent = 1
+            # print(other, self._count)
+
+            return self
+
+        def __mod__(self, other):
+            if isinstance(other, int):
+                self._indent = other
+                return self
+
+            parent = self._levels.get(self._indent - 1)
+            self._add_children(parent=parent, children=other)
+            self._last = other
+            self._levels.pop(self._level)
+            self._level = self._indent - 1
+            self._count += 1
+            self._indent = 1
+            # print(other, self._count)
+
+            return self
+
+        @staticmethod
+        def _add_children(parent, children):
+            if parent.children is None:
+                parent.children = children
+            elif isinstance(parent.children, (tuple, MutableSequence)):
+                if isinstance(children, (tuple, MutableSequence)):
+                    parent.children = [*parent.children, *children]
+                else:
+                    parent.children = [*parent.children, children]
+            else:
+                if isinstance(children, (tuple, MutableSequence)):
+                    parent.children = [parent.children, *children]
+                else:
+                    parent.children = [parent.children, children]
+
+    return ModComponent
+
+
+__all__ = [name for name in dir(_imports) if ((not name.startswith('_')) and
+                                              (name not in ['METADATA_PATH', 'os', 'sys', 'themes']))]
