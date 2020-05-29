@@ -1,4 +1,4 @@
-# dash-api
+# dash-wrapper
 A wrapper around dash that allows a new syntax to define the layout of your app.
 
 The idea is of this package is to simplify the syntax for nesting `html`  elements in your app layout.
