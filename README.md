@@ -31,9 +31,9 @@ There are 5 simple rules to define the layout :
 2. **add an element on the same level with `@`**
 3. **add an element on the previous level with `/`**
 4. **add an element on the nth previous level with `/n/`**
-5. **add an element on specific level with `%n%`**
+5. **add an element on A specific level with `%n%`**
 
-**Example 1: add an element on the lower level with `*` AKA add a children**
+**Example 1: add an element on the lower level with `*` AKA add a child**
 
 standard API:
 ```
