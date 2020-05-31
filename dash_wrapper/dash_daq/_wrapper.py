@@ -11,4 +11,5 @@ def __getattr__(name):
     return base_wrapper(name, module)
 
 
-__all__ = module.__all__
+__all__ = [name for name in dir(module) if ((not name.startswith('_')) and
+                                              (name not in ['METADATA_PATH', 'os', 'sys', 'themes']))]
