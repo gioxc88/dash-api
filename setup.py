@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dash-wrapper", # Replace with your own username
-    version="0.1.5",
+    version="0.1.6",
     author="gioxc88",
     author_email="gioxc@hotmail.it",
     description="A wrapper around dash to extend the api defining the layout",
