@@ -12,7 +12,7 @@ def __getattr__(name):
 
 
 __all__ = [name for name in dir(module) if ((not name.startswith('_')) and
-                                            (name.istitle()) and
+                                            (name[0].istitle()) and
                                             (name not in ['METADATA_PATH',
                                                           'os',
                                                           'sys',
