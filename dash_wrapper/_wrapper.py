@@ -47,7 +47,10 @@ def base_wrapper(name, module):
             parent = self._levels.get(self._level - self._indent)
             self._add_children(parent=parent, children=other)
             self._last = other
-            self._levels.pop(self._level)
+
+            for level in range(self._level, self._level - self._indent, -1):
+                self._levels.pop(level)
+
             self._level -= self._indent
             self._count += 1
             self._indent = 1
@@ -63,7 +66,10 @@ def base_wrapper(name, module):
             parent = self._levels.get(self._indent - 1)
             self._add_children(parent=parent, children=other)
             self._last = other
-            self._levels.pop(self._level)
+
+            for level in range(self._indent, self._level + 1):
+                self._levels.pop(level)
+
             self._level = self._indent - 1
             self._count += 1
             self._indent = 1
