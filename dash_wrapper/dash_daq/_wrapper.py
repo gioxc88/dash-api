@@ -7,9 +7,16 @@ this_module = sys.modules[__name__]
 
 
 def __getattr__(name):
-    # print(name)
+    print(name)
     return base_wrapper(name, module)
 
 
 __all__ = [name for name in dir(module) if ((not name.startswith('_')) and
-                                              (name not in ['METADATA_PATH', 'os', 'sys', 'themes']))]
+                                            (name.istitle()) and
+                                            (name not in ['METADATA_PATH',
+                                                          'os',
+                                                          'sys',
+                                                          'themes',
+                                                          'async_resources',
+                                                          'f',
+                                                          'json']))]
